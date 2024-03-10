@@ -1,0 +1,16 @@
+{
+    "timezone": "Europe/Istanbul",
+    
+    "spotify_configs":{
+        "user_id_to_track":"",
+        "spotify_client_id":"",
+        "spotify_client_secret":""
+    },
+    
+    "send_gmail": true,
+    "gmail_sender":{
+        "mail_from":"",
+        "mail_to":"",
+        "mail_password":""
+    }
+}

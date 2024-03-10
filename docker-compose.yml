@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./logs:/app/logs
+    restart: always
