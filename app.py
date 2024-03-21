@@ -88,12 +88,14 @@ while True:
                     if is_send_gmail:
                         unfollowers = ", ".join(updated_lists[1])
                         gmail_sender.send_message("Spotify - Unfollowers", f"Unfollowers: {unfollowers}")
-                total_followers = temp
             else:
                 # we are in the temp != total_followers block but the lists are empty
                 # this means the new person has followed and then unfollowed immediately
                 gmail_sender.send_message("Spotify - Followed and unfollowed", "Followed and unfollowed immediately")
+
+            total_followers = temp
+
     except Exception as e:
         monitor_error(e)
 
-    time.sleep(.75)  # wait to avoid spamming the API
+    time.sleep(.9)  # wait to avoid spamming the API
