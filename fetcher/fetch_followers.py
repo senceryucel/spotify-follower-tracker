@@ -3,6 +3,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+import time
+
 
 class FetchFollowers:
     def __init__(self, user_id):
@@ -18,6 +20,18 @@ class FetchFollowers:
         self.init_followers()
 
 
+    # decorator to measure the time of fetching followers
+    def measure_time(func):
+        def wrapper(*args, **kwargs):
+            start = time.time()
+            result = func(*args, **kwargs)
+            end = time.time()
+            with open("./logs/fetch_followers.log", "a") as log_file:
+                log_file.write(f"Time elapsed for {func.__name__}: {end - start}\n")
+            return result
+        return wrapper
+
+
     def init_followers(self):
         """
         Initializes the followers list
@@ -25,7 +39,7 @@ class FetchFollowers:
         self.driver.get(self.URL)
         self.followers_list = self.get_followers()
 
-
+    @measure_time
     def get_followers(self):
         """
         Returns the followers list
@@ -37,7 +51,7 @@ class FetchFollowers:
             followers.append(follower.text.split("\n")[0])
         return followers
     
-
+    @measure_time
     def compare_followers(self):
         """
         Compares the followers list
