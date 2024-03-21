@@ -47,7 +47,7 @@ class FetchFollowers:
         self.driver.refresh()
         self.driver.implicitly_wait(10)
         followers = []
-        for follower in self.driver.find_elements(By.XPATH, "//*[@id='main']/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/section/div[2]/div"):
+        for follower in self.driver.find_elements(By.XPATH, "//*[@id='main']/div/div[2]/div[3]/div[1]/div[2]/div[2]/div[2]/main/section/section/div[2]/div"):
             followers.append(follower.text.split("\n")[0])
         return followers
     
